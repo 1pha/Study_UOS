@@ -1,14 +1,29 @@
 #coding: utf-8
-import sys, os
-sys.path.append(os.pardir)  # 부모 디렉터리의 파일을 가져올 수 있도록 설정
 import numpy as np
 import matplotlib.pyplot as plt
-from .two_layer_net import TwoLayerNet
-
+from two_layer_net import TwoLayerNet
 import pandas as pd
-iris = pd.read_csv('Fisher.txt', sep='\t')
 
-network = TwoLayerNet(input_size=784, hidden_size=50, output_size=10)
+# ---------
+network = TwoLayerNet(input_size=9, hidden_size=50, output_size=2)
+
+df = pd.read_csv('breast_cancer_scikit_onehot_dataset.csv')
+x_train = np.array(df.iloc[:500, :-1])
+x_test = np.array(df.iloc[500:, :-1])
+
+target = np.array(df.iloc[:, -1])
+target_encoded = []
+for data in target:
+    tmp = [0, 0]
+    if data == 2:
+        tmp[0] = 1
+    if data == 4:
+        tmp[1] = 1
+    target_encoded.append(tmp)
+
+t_train = np.array(target_encoded[:500])
+t_test = np.array(target_encoded[500:])
+# ---------
 
 # 하이퍼파라미터
 iters_num = 10000  # 반복 횟수를 적절히 설정한다.
@@ -47,7 +62,7 @@ for i in range(iters_num):
         test_acc = network.accuracy(x_test, t_test)
         train_acc_list.append(train_acc)
         test_acc_list.append(test_acc)
-        print("train acc, test acc | " + str(train_acc) + ", " + str(test_acc))
+        print(str(i) + "train acc, test acc | " + str(train_acc) + ", " + str(test_acc))
 
 # 그래프 그리기
 markers = {'train': 'o', 'test': 's'}
