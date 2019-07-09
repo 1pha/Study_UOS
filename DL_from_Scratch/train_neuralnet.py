@@ -1,7 +1,7 @@
-#coding: utf-8
+# coding: utf-8
 import numpy as np
 import matplotlib.pyplot as plt
-from two_layer_net import TwoLayerNet
+from .two_layer_net import TwoLayerNet
 import pandas as pd
 
 # ---------
@@ -45,7 +45,7 @@ for i in range(iters_num):
     t_batch = t_train[batch_mask]
     
     # 기울기 계산
-    #grad = network.numerical_gradient(x_batch, t_batch)
+    # grad = network.numerical_gradient(x_batch, t_batch)
     grad = network.gradient(x_batch, t_batch)
     
     # 매개변수 갱신
