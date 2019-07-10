@@ -17,6 +17,9 @@ def cross_entropy_error(y, t, delta=1e-7):
 if __name__=="__main__":
     t = [0, 0, 1, 0, 0]
     y = [0, 0.05, 0.9, 0.05, 0]
+    y2 = [0.25, 0.25, 0.0, 0.25, 0.25]
 
     print(mean_sqaured_error(y, t))
+    print(mean_sqaured_error(y2, t))
     print(cross_entropy_error(y, t))
+    print(cross_entropy_error(y2, t))
