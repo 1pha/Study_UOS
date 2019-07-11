@@ -29,7 +29,7 @@ for i in range(iters_num):
     batch_mask = np.random.choice(train_size, batch_size)
     x_batch = x_train[batch_mask]
     t_batch = t_train[batch_mask]
-    
+
     # 기울기 계산
     #grad = network.numerical_gradient(x_batch, t_batch)
     grad = network.gradient(x_batch, t_batch)

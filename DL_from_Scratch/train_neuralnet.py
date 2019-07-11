@@ -47,7 +47,7 @@ for i in range(iters_num):
     # 기울기 계산
     # grad = network.numerical_gradient(x_batch, t_batch)
     grad = network.gradient(x_batch, t_batch)
-    
+
     # 매개변수 갱신
     for key in ('W1', 'b1', 'W2', 'b2'):
         network.params[key] -= learning_rate * grad[key]
